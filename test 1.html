@@ -419,25 +419,6 @@
             white-space: nowrap;
         }
 
-        /* Style for plush buttons in the header specifically */
-        #app-header .plush-button {
-            margin-left: 8px;
-        }
-        #app-header .plush-button .plush-button-front {
-            justify-content: center; /* Center the icon */
-        }
-
-        #app-header .plush-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            filter: grayscale(80%);
-        }
-
-        #app-header .plush-button:disabled .plush-button-front {
-            transform: translateY(-3px); /* Prevent hover effect */
-            background-color: var(--surface-color);
-        }
-
         #sidebar-toggle-btn {
             margin-left: 0; /* Override */
         }
@@ -1545,43 +1526,16 @@
             gap: 8px; 
         }
 
-        /* Specific styles for plush buttons in the input area */
-        #input-actions-row .plush-button {
-            width: 44px;
-            height: 44px;
-            flex-shrink: 0;
-        }
-        #input-actions-row .plush-button .plush-button-front {
-            padding: 0;
-            justify-content: center;
-        }
-        #input-actions-row .plush-button i {
-            font-size: 19px;
-        }
-        #input-actions-row .plush-button:disabled {
-             opacity: 0.5; 
-            cursor: not-allowed;
-            filter: grayscale(80%);
-        }
-        #input-actions-row .plush-button:disabled .plush-button-front {
-             transform: translateY(-3px);
-             background-color: var(--surface-color);
-        }
-
         #sendBtn.stop-mode {
             background-color: var(--stop-button-bg-color);
             border-color: var(--stop-button-bg-color);
         }
 
-        #sendBtn.stop-mode .plush-button-front {
-             background-color: var(--stop-button-bg-color);
-             color: var(--button-text-color);
-        }
-        #sendBtn.stop-mode:hover .plush-button-front {
+        #sendBtn.stop-mode:hover {
             background-color: var(--stop-button-hover-bg-color);
         }
 
-        #mic-btn.active .plush-button-front {
+        #mic-btn.active {
             color: var(--mic-button-active-color);
         }
         
@@ -1666,6 +1620,65 @@
             box-shadow: 0 0 0 1.5px var(--mic-button-active-color), 0 1px 2px rgba(0,0,0,0.1);
         }
 
+
+        /* New Reusable Glass Button Style */
+        .glass-icon-button {
+            padding: 0;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border-color);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border-radius: 12px; /* Rounded square shape */
+            transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, backdrop-filter 0.2s, color 0.2s, transform 0.1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-icon-button i {
+            font-size: 18px;
+            color: currentColor;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .glass-icon-button:hover:not(:disabled) {
+            background-color: var(--glass-icon-button-hover-bg);
+            border-color: var(--text-color);
+        }
+
+        .glass-icon-button:active:not(:disabled) {
+            transform: scale(0.92);
+        }
+
+        .glass-icon-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed !important;
+            background: var(--glass-bg) !important;
+            border-color: var(--glass-border-color) !important;
+            color: var(--secondary-text-color) !important;
+            box-shadow: var(--glass-shadow) !important;
+        }
+
+        .glass-icon-button.stop-mode {
+            background-color: var(--stop-button-bg-color);
+            border-color: var(--stop-button-bg-color);
+            color: var(--button-text-color);
+        }
+
+        .glass-icon-button.stop-mode:hover:not(:disabled) {
+            background-color: var(--stop-button-hover-bg-color);
+        }
 
         #sendBtn {
             padding: 0;
@@ -2473,7 +2486,7 @@ body.dark-mode #profile-modal .modal-close-btn:hover {
                     </div>
                     <span id="profile-text">FlabsWorld</span>
                 </div>
-                <button id="sidebar-profile-btn" class="header-control-btn sidebar-header-btn" title="Profil Kreator">
+                <button id="sidebar-profile-btn" class="glass-icon-button" title="Profil Kreator">
                     <i class="fi fi-rr-user"></i>
                 </button>
             </div>
@@ -2488,6 +2501,33 @@ body.dark-mode #profile-modal .modal-close-btn:hover {
                         </span>
                     </button>
                 </a>
+                <a href="#" class="plush-button-wrapper">
+                    <button class="plush-button" aria-label="Buatkan Gambar">
+                        <span class="plush-button-edge"></span>
+                        <span class="plush-button-front">
+                            <i class="fi fi-rr-picture"></i>
+                            <span>Buatkan gambar</span>
+                        </span>
+                    </button>
+                </a>
+                <a href="#" class="plush-button-wrapper">
+                    <button class="plush-button" aria-label="Buatkan Ringkasan">
+                        <span class="plush-button-edge"></span>
+                        <span class="plush-button-front">
+                            <i class="fi fi-rr-memo"></i>
+                            <span>Buatkan ringkasan</span>
+                        </span>
+                    </button>
+                </a>
+                <a href="#" class="plush-button-wrapper">
+                    <button class="plush-button" aria-label="Lainnya">
+                        <span class="plush-button-edge"></span>
+                        <span class="plush-button-front">
+                            <i class="fi fi-rr-apps"></i>
+                            <span>More</span>
+                        </span>
+                    </button>
+                </a>
                 <a href="#" id="sidebar-new-chat-btn" class="plush-button-wrapper">
                     <button class="plush-button" aria-label="Buat Obrolan Baru">
                         <span class="plush-button-edge"></span>
@@ -2497,22 +2537,6 @@ body.dark-mode #profile-modal .modal-close-btn:hover {
                         </span>
                     </button>
                 </a>
-                <button class="sidebar-button">
-                    <i class="fi fi-rr-apps"></i>
-                    <span>Explore</span>
-                </button>
-                <button class="sidebar-button">
-                    <i class="fi fi-rr-settings"></i>
-                    <span>Settings</span>
-                </button>
-                <button class="sidebar-button">
-                    <i class="fi fi-rr-interrogation"></i>
-                    <span>Updates & FAQ</span>
-                </button>
-                <button class="sidebar-button">
-                    <i class="fi fi-rr-exit"></i>
-                    <span>Logout</span>
-                </button>
             </div>
         </div>
 
@@ -2545,20 +2569,14 @@ body.dark-mode #profile-modal .modal-close-btn:hover {
 
     <div id="app-layout-container">
         <div id="app-header">
-             <button id="sidebar-toggle-btn" class="plush-button" title="Buka Menu" style="width: 42px; height: 42px; padding: 2px; border-radius: 12px;">
-                <span class="plush-button-edge"></span>
-                <span class="plush-button-front" style="padding: 8px;">
-                    <i class="fi fi-rr-menu-burger"></i>
-                </span>
+             <button id="sidebar-toggle-btn" class="glass-icon-button" title="Buka Menu">
+                <i class="fi fi-rr-menu-burger"></i>
             </button>
             
             <div id="app-header-tools-container">
                 
-                <button id="toggle-tools-dropdown-btn" class="plush-button" title="Alat" style="width: 42px; height: 42px; padding: 2px; border-radius: 12px;">
-                     <span class="plush-button-edge"></span>
-                    <span class="plush-button-front" style="padding: 8px;">
-                        <i class="fi fi-rr-settings"></i>
-                    </span>
+                <button id="toggle-tools-dropdown-btn" class="glass-icon-button" title="Alat">
+                    <i class="fi fi-rr-settings"></i>
                 </button>
                 <div id="tools-dropdown-menu">
                     <button id="download-chat-btn" title="Unduh Riwayat Chat (JSON)">
@@ -2625,57 +2643,38 @@ body.dark-mode #profile-modal .modal-close-btn:hover {
                 <div id="input-actions-row">
                     <div class="input-actions-group-left" id="normal-actions-left">
                         <div id="file-actions-btn-container">
-                            <button id="file-actions-btn" class="plush-button" title="Tambah Lampiran/Aksi">
-                                <span class="plush-button-edge"></span>
-                                <span class="plush-button-front">
-                                    <i class="fi fi-rr-plus"></i>
-                                </span>
+                            <button id="file-actions-btn" class="glass-icon-button" title="Tambah Lampiran/Aksi">
+                                <i class="fi fi-rr-plus"></i>
                             </button>
                             <div id="file-actions-menu">
                                 <!-- Menu items will be set by JS -->
                             </div>
                         </div>
+                         <button id="deepthink-btn" class="glass-icon-button" title="Mode Berpikir Mendalam">
+                            <i class="fi fi-rr-bulb"></i>
+                        </button>
                     </div>
-                    
-                     <button id="voice-cancel-btn" class="plush-button" title="Batalkan Input Suara" style="display:none;">
-                        <span class="plush-button-edge"></span>
-                        <span class="plush-button-front">
-                            <i class="fi fi-rr-cross-small"></i>
-                        </span>
+
+                     <button id="voice-cancel-btn" class="glass-icon-button stop-mode" title="Batalkan Input Suara" style="display:none;">
+                        <i class="fi fi-rr-cross-small"></i>
                     </button>
                     <div id="voice-timer-display" style="display:none;">0:00</div>
-                    <button id="voice-stop-convert-btn" class="plush-button" title="Selesai Input Suara" style="display:none;">
-                        <span class="plush-button-edge"></span>
-                        <span class="plush-button-front">
-                            <i class="fi fi-rr-check"></i>
-                        </span>
+                    <button id="voice-stop-convert-btn" class="glass-icon-button" title="Selesai Input Suara" style="display:none;">
+                        <i class="fi fi-rr-check"></i>
                     </button>
-                    
+
                     <input type="file" id="image-attachment-input" class="modal-hidden-file-input" accept="image/*" multiple>
                     <input type="file" id="document-attachment-input" class="modal-hidden-file-input" accept=".pdf,.js,.py,.txt,.html,.css,.md,.csv,.xml,.rtf,.java,.json,.xlsx,.xls" multiple>
                     <input type="file" id="import-chat-file-input" class="modal-hidden-file-input" accept=".json">
 
                     
                     <div class="input-actions-group-right" id="normal-actions-right">
-                        <div id="deepthink-btn-container">
-                            <button id="deepthink-btn" class="plush-button" title="Mode Berpikir Mendalam">
-                                <span class="plush-button-edge"></span>
-                                <span class="plush-button-front">
-                                    <i class="fi fi-rr-bulb"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <button id="mic-btn" class="plush-button" title="Input Suara">
-                            <span class="plush-button-edge"></span>
-                            <span class="plush-button-front">
-                                <i class="fi fi-rr-microphone"></i>
-                            </span>
+
+                        <button id="mic-btn" class="glass-icon-button" title="Input Suara">
+                            <i class="fi fi-rr-microphone"></i>
                         </button>
-                        <button id="sendBtn" class="plush-button" title="Kirim">
-                             <span class="plush-button-edge"></span>
-                             <span class="plush-button-front">
-                                <i class="fi fi-rr-paper-plane"></i>
-                             </span>
+                        <button id="sendBtn" class="glass-icon-button" title="Kirim">
+                           <i class="fi fi-rr-paper-plane"></i>
                         </button>
                     </div>
                 </div>
